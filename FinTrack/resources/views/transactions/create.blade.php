@@ -165,7 +165,7 @@
         const name = newCategoryInput.value.trim();
         if (!name) return;
 
-        const type = incomeRadio.checked ? 'income' : 'expense';
+        const type = "{{ $type }}";
 
         fetch('/categories', {
             method: 'POST',
