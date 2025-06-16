@@ -28,20 +28,11 @@
                         {{-- Token reset password --}}
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        {{-- Email --}}
+                       {{-- Email --}}
                         <div class="form-group row mt-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
+                            <label class="col-md-4 col-form-label text-md-right">Email</label>
                             <div class="col-md-6">
-                                <input id="email" type="email"
-                                       class="form-control @error('email') is-invalid @enderror"
-                                       name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input type="text" class="form-control" value="{{ $email }}" readonly>
                             </div>
                         </div>
 
