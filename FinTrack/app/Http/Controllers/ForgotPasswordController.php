@@ -39,10 +39,17 @@ class ForgotPasswordController extends Controller
     }
 
     // Tampilkan form reset password
-    public function showResetForm($token)
-    {
-        return view('auth.reset-password', ['token' => $token]);
+   public function showResetForm($token)
+{
+    $record = DB::table('password_resets')->where('token', $token)->first();
+
+    if (!$record) {
+        return redirect()->route('password.request')->with('error', 'Token tidak valid atau sudah kedaluwarsa.');
     }
+
+    if (Carbon::parse($record->created_at)->addMinutes(60)->isPast()) {
+    return redirect()->route('password.request')->with('error', 'Token sudah kedaluwarsa.');
+}
 
     // Proses reset password
     public function resetPassword(Request $request)
